@@ -59,6 +59,11 @@ void AShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	
 }
 
+bool AShooterCharacter::IsDead() const
+{
+	return Health <= 0.f;
+}
+
 void AShooterCharacter::MoveForward(float AxisValue)
 {
 	AddMovementInput(GetActorForwardVector() * AxisValue);

@@ -41,6 +41,8 @@ public:
 	
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	UFUNCTION(BlueprintPure)
+	bool IsDead() const;
 private:
 	void MoveForward(float AxisValue);
 	void MoveRight(float AxisValue);
