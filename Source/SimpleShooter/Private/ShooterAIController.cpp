@@ -5,8 +5,17 @@
 
 #include "Kismet/GameplayStatics.h"
 
+void AShooterAIController::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	AActor* PlayerActor = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
+	MoveToActor(PlayerActor, 200);
+}
+
 void AShooterAIController::BeginPlay()
 {
 	Super::BeginPlay();
-	SetFocus(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	AActor* PlayerActor = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
+	SetFocus(PlayerActor);
+	MoveToActor(PlayerActor);
 }
