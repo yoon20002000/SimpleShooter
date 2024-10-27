@@ -18,7 +18,9 @@ private:
 	TObjectPtr<USkeletalMeshComponent> Mesh;
 	UPROPERTY(EditDefaultsOnly)
 	TObjectPtr<UParticleSystem> MuzzleEffect;
-
+	UPROPERTY(EditDefaultsOnly)
+	TObjectPtr<UParticleSystem> HitEffect;
+	
 	UPROPERTY(EditAnywhere)
 	float MaxRange = 1000;
 	
