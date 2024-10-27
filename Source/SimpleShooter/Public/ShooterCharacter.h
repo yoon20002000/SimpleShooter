@@ -21,7 +21,10 @@ private:
 
 	UPROPERTY()
 	TObjectPtr<AGun> Gun;
-	
+	UPROPERTY(EditDefaultsOnly)
+	float MaxHealth = 100.0f;
+	UPROPERTY(VisibleAnywhere)
+	float Health = 100.0f;
 public:
 	// Sets default values for this character's properties
 	AShooterCharacter();
@@ -33,7 +36,8 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,
+								 class AController* EventInstigator, AActor* DamageCauser) override;
 	
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
