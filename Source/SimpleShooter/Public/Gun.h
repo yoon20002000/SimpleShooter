@@ -16,6 +16,8 @@ private:
 	TObjectPtr<USceneComponent> RootComp;
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USkeletalMeshComponent> Mesh;
+	UPROPERTY(EditDefaultsOnly)
+	TObjectPtr<UParticleSystem> MuzzleEffect;
 
 public:
 	// Sets default values for this actor's properties
