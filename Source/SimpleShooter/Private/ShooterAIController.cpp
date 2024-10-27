@@ -3,3 +3,10 @@
 
 #include "ShooterAIController.h"
 
+#include "Kismet/GameplayStatics.h"
+
+void AShooterAIController::BeginPlay()
+{
+	Super::BeginPlay();
+	SetFocus(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+}
