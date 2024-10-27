@@ -4,7 +4,8 @@
 #include "Gun.h"
 
 #include "Kismet/GameplayStatics.h"
-#include "Particles/ParticleSystemComponent.h"
+#include "DrawDebugHelpers.h"
+#include "ShooterCharacter.h"
 
 // Sets default values
 AGun::AGun()
@@ -20,6 +21,17 @@ AGun::AGun()
 void AGun::PullTrigger()
 {
 	UGameplayStatics::SpawnEmitterAttached(MuzzleEffect, Mesh,TEXT("MuzzleFlashSocket"));
+	if (const APawn* OwnerPawn = Cast<APawn>(GetOwner()); OwnerPawn != nullptr)
+	{
+		if(AController* OwnerController = OwnerPawn->GetController(); OwnerController != nullptr)
+		{
+			FVector OutLocation;
+			FRotator OutRotation;
+			OwnerController->GetPlayerViewPoint(OutLocation, OutRotation);
+			DrawDebugCamera(GetWorld(), OutLocation, OutRotation, 90, 2, FColor::Red, true);
+		}
+	}
+	
 }
 
 // Called when the game starts or when spawned
