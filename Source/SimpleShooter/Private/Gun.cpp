@@ -25,13 +25,19 @@ void AGun::PullTrigger()
 	{
 		if(AController* OwnerController = OwnerPawn->GetController(); OwnerController != nullptr)
 		{
-			FVector OutLocation;
-			FRotator OutRotation;
-			OwnerController->GetPlayerViewPoint(OutLocation, OutRotation);
-			DrawDebugCamera(GetWorld(), OutLocation, OutRotation, 90, 2, FColor::Red, true);
+			FVector Start;
+			FRotator Rotation;
+			OwnerController->GetPlayerViewPoint(Start, Rotation);
+
+			FVector End = Start + Rotation.Vector() * MaxRange;
+			
+			FHitResult Hit;
+			if(GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_GameTraceChannel1))
+			{
+				DrawDebugPoint(GetWorld(), Hit.Location, 20, FColor::Red, true);	
+			}
 		}
 	}
-	
 }
 
 // Called when the game starts or when spawned

@@ -19,6 +19,9 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 	TObjectPtr<UParticleSystem> MuzzleEffect;
 
+	UPROPERTY(EditAnywhere)
+	float MaxRange = 1000;
+	
 public:
 	// Sets default values for this actor's properties
 	AGun();
