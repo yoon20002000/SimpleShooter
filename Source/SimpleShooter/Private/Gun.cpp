@@ -14,6 +14,11 @@ AGun::AGun()
 	Mesh->SetupAttachment(RootComp);
 }
 
+void AGun::PullTrigger()
+{
+	UE_LOG(LogTemp, Log, TEXT("Shoot"));
+}
+
 // Called when the game starts or when spawned
 void AGun::BeginPlay()
 {
