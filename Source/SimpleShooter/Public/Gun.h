@@ -25,7 +25,12 @@ private:
 	float MaxRange = 1000;
 	UPROPERTY(EditAnywhere)
 	float Damage = 10;
-	
+
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<class USoundBase> MuzzleSound;
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<class USoundBase> HitSound;
 public:
 	// Sets default values for this actor's properties
 	AGun();
