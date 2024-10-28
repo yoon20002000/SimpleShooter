@@ -43,6 +43,8 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	UFUNCTION(BlueprintPure)
 	bool IsDead() const;
+	UFUNCTION(BlueprintPure)
+	float GetHealthPercent() const;
 	void Shoot();
 private:
 	void MoveForward(float AxisValue);
