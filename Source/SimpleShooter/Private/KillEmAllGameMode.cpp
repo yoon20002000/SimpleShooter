@@ -3,6 +3,7 @@
 
 #include "KillEmAllGameMode.h"
 
+#include "EngineUtils.h"
 #include "ShooterPlayerController.h"
 
 AKillEmAllGameMode::AKillEmAllGameMode()
@@ -14,8 +15,15 @@ void AKillEmAllGameMode::PawnKilled(APawn* PawnKilled)
 	Super::PawnKilled(PawnKilled);
 	if(APlayerController* PlayerController = Cast<APlayerController>( PawnKilled->GetController()); PlayerController !=nullptr)
 	{
-		PlayerController->ClientGameEnded(nullptr,false);
+		EndGame(false);
 	}
-	
-	UE_LOG(LogTemp, Log, TEXT("Pawn was dead : %s"), *PawnKilled->GetName());
+}
+
+void AKillEmAllGameMode::EndGame(bool bIsPlayerWinner)
+{
+	for(APlayerController* Controller : TActorRange<APlayerController>(GetWorld()))
+	{
+		bool bIsWinner = Controller->IsPlayerController() == bIsPlayerWinner;
+		Controller->ClientGameEnded(Controller->GetPawn(), bIsWinner);
+	}
 }
