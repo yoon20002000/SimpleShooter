@@ -15,10 +15,10 @@ UBTService_PlayerLocationIfSeen::UBTService_PlayerLocationIfSeen()
 void UBTService_PlayerLocationIfSeen::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
 {
 	Super::TickNode(OwnerComp, NodeMemory, DeltaSeconds);
-	const AActor* PlayerActor = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
+	AActor* PlayerActor = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
 	if (OwnerComp.GetAIOwner() != nullptr && OwnerComp.GetAIOwner()->LineOfSightTo(PlayerActor))
 	{
-		OwnerComp.GetBlackboardComponent()->SetValueAsVector(GetSelectedBlackboardKey(),PlayerActor->GetActorLocation());
+		OwnerComp.GetBlackboardComponent()->SetValueAsObject(GetSelectedBlackboardKey(),PlayerActor);
 	}
 	else
 	{
