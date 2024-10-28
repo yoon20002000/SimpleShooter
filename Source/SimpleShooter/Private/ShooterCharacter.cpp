@@ -43,12 +43,12 @@ float AShooterCharacter::TakeDamage(float DamageAmount, struct FDamageEvent cons
 
 	if(IsDead() == true)
 	{
-		DetachFromControllerPendingDestroy();
-		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		if(AShooterGameMode* GameMode = GetWorld()->GetAuthGameMode<AShooterGameMode>(); GameMode != nullptr)
 		{
 			GameMode->PawnKilled(this);
 		}
+		DetachFromControllerPendingDestroy();
+		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
 		
 	UE_LOG(LogTemp, Log, TEXT("Actor Name : %s Health : %f"),*GetName(), Health);
