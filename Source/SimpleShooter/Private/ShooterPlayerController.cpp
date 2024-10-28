@@ -8,6 +8,11 @@ void AShooterPlayerController::ClientGameEnded_Implementation(class AActor* EndG
 {
 	Super::ClientGameEnded_Implementation(EndGameFocus, bIsWinner);
 
+	if(HUDScreen != nullptr)
+	{
+		HUDScreen->RemoveFromParent();
+	}
+	
 	if (bIsWinner)
 	{
 		UUserWidget* WinScreen = CreateWidget(this, WinScreenClass, "WinScreen");
@@ -25,4 +30,17 @@ void AShooterPlayerController::ClientGameEnded_Implementation(class AActor* EndG
 		}
 	}
 	GetWorldTimerManager().SetTimer(RestartTimer, this, &APlayerController::RestartLevel, RestartDelay);
+}
+
+void AShooterPlayerController::BeginPlay()
+{
+	Super::BeginPlay();
+	if(MainHUD != nullptr)
+	{
+		HUDScreen = CreateWidget(this, MainHUD, "HUD");
+		if (HUDScreen != nullptr)
+		{
+			HUDScreen->AddToViewport();
+		}
+	}
 }

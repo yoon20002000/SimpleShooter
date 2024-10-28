@@ -23,6 +23,11 @@ private:
 	TSubclassOf<class UUserWidget> WinScreenClass;
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<class UUserWidget> LoseScreenClass;
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class UUserWidget> MainHUD;
+	UPROPERTY()
+	TObjectPtr<class UUserWidget> HUDScreen;
 public:
 	virtual void ClientGameEnded_Implementation(class AActor* EndGameFocus, bool bIsWinner) override;
+	virtual void BeginPlay() override;
 };
