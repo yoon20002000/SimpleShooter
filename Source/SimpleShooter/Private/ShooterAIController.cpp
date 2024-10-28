@@ -9,17 +9,6 @@
 void AShooterAIController::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	AActor* PlayerActor = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
-	if(LineOfSightTo(PlayerActor))
-	{
-		const FVector PlayerLocation = PlayerActor->GetActorLocation();
-		GetBlackboardComponent()->SetValueAsVector(TEXT("PlayerLocation"),PlayerLocation);
-		GetBlackboardComponent()->SetValueAsVector(TEXT("LastKnownPlayerLocation"),PlayerLocation);
-	}
-	else
-	{
-		GetBlackboardComponent()->ClearValue(TEXT("PlayerLocation"));
-	}
 }
 
 void AShooterAIController::BeginPlay()
