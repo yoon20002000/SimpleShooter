@@ -20,9 +20,9 @@ private:
 	FTimerHandle RestartTimer;
 
 	UPROPERTY(EditAnywhere)
+	TSubclassOf<class UUserWidget> WinScreenClass;
+	UPROPERTY(EditAnywhere)
 	TSubclassOf<class UUserWidget> LoseScreenClass;
 public:
 	virtual void ClientGameEnded_Implementation(class AActor* EndGameFocus, bool bIsWinner) override;
-
-	
 };

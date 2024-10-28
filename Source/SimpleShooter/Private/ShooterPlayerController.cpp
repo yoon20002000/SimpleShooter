@@ -8,11 +8,21 @@ void AShooterPlayerController::ClientGameEnded_Implementation(class AActor* EndG
 {
 	Super::ClientGameEnded_Implementation(EndGameFocus, bIsWinner);
 
-	UUserWidget* LoseScreen = CreateWidget(this,LoseScreenClass,"LoseScreen");
-	if(LoseScreen != nullptr)
+	if (bIsWinner)
 	{
-		LoseScreen->AddToViewport();
+		UUserWidget* WinScreen = CreateWidget(this, WinScreenClass, "WinScreen");
+		if (WinScreen != nullptr)
+		{
+			WinScreen->AddToViewport();
+		}
 	}
-	
-	GetWorldTimerManager().SetTimer(RestartTimer, this, &APlayerController::RestartLevel,RestartDelay);
+	else
+	{
+		UUserWidget* LoseScreen = CreateWidget(this, LoseScreenClass, "LoseScreen");
+		if (LoseScreen != nullptr)
+		{
+			LoseScreen->AddToViewport();
+		}
+	}
+	GetWorldTimerManager().SetTimer(RestartTimer, this, &APlayerController::RestartLevel, RestartDelay);
 }
