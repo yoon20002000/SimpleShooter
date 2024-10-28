@@ -28,9 +28,9 @@ private:
 
 
 	UPROPERTY(EditAnywhere)
-	TArray<TObjectPtr<class USoundBase>> MuzzleSound;
+	TObjectPtr<class USoundBase> MuzzleSound;
 	UPROPERTY(EditAnywhere)
-	TArray<TObjectPtr<class USoundBase>> HitSound;
+	TObjectPtr<class USoundBase> HitSound;
 public:
 	// Sets default values for this actor's properties
 	AGun();
