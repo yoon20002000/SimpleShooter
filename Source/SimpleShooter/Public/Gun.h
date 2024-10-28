@@ -37,4 +37,7 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+private:
+	bool GunTrace(FHitResult& OutHit, FVector& OutShotDirection) const;
+	AController* GetOwnerController() const;
 };
